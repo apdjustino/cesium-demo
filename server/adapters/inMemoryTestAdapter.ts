@@ -7,7 +7,7 @@ import { Material } from "../types/material";
 export class InMemoryTestAdapter {
   materials: Material[];
 
-  constructor() {
+  constructor() {    
     this.materials = [
       {
         id: "63a4c1a5-716c-48af-b2c7-f674d9eda436",
@@ -16,7 +16,7 @@ export class InMemoryTestAdapter {
         deliverDate: "14-03-2022",
         name: "Sand",
         volume: 4,
-        totalCost: "$200.00"
+        totalCost: "$20000.00"
       },
       {
         id: "c66f267a-9401-4e9b-a327-e27e4de30e0c",
@@ -25,7 +25,7 @@ export class InMemoryTestAdapter {
         deliverDate: "14-03-2022",
         name: "Gravel",
         volume: 4,
-        totalCost: "$40.00"
+        totalCost: "$4000.00"
       }
     ]
   }
@@ -54,13 +54,13 @@ export class InMemoryTestAdapter {
    * @param newMaterial 
    * @returns {boolean}
    */
-  update(id: string, newMaterial: Material): boolean {
-    const index = this.materials.findIndex((material) => material.id === id);
-    if (index) {
-      this.materials = this.materials.splice(index, 1, newMaterial);      
+  update(id: string, newMaterial: Material): boolean {    
+    const index = this.materials.findIndex((material) => material.id === id);    
+    if (index >= 0) {      
+      this.materials.splice(index, 1, newMaterial);      
     }
 
-    return !!index;
+    return index >= 0;
   }
 
   /**
@@ -70,11 +70,11 @@ export class InMemoryTestAdapter {
    */
   delete(id: string): boolean {
     const index = this.materials.findIndex((material) => material.id === id);
-    if (index) {
-      this.materials = this.materials.splice(index, 1);      
+    if (index >= 0) {
+      this.materials.splice(index, 1);      
     }
 
-    return !!index;
+    return index >= 0;
   }
 
   /**
