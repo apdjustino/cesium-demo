@@ -11,8 +11,8 @@ export class Material {
   name: string;
   volume: number;
 
-  constructor(color: string, cost: number, deliverDate: string, name: string, volume: number) {    
-    this.color = color || "#000000";
+  constructor(color: string = "#000000", cost: number = 0, deliverDate: string = "", name: string = "", volume: number = 0) {    
+    this.color = color
     this.name = name;
     this.deliverDate = deliverDate;
     

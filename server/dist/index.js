@@ -1,22 +1,21 @@
-import { fileURLToPath } from 'url';
-import express from "express";
-import path from "path";
-import { handleGetMaterials } from './handlers/materialHandlers.js';
-import { logRequest, logError } from './logger/config.js';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const app = express();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const materialHandlers_js_1 = require("./handlers/materialHandlers.js");
+const config_js_1 = require("./logger/config.js");
+const app = (0, express_1.default)();
 // hard code port - in a larger app or production environemnt would use environment variables
 const port = 3001;
 // use JSON middleware to allow for JSON requests and responses
-app.use(express.json());
+app.use(express_1.default.json());
 // use winston logger middleware
-app.use(logRequest);
-app.use(logError);
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../index.html"));
-});
-app.get("/materials", handleGetMaterials);
+app.use(config_js_1.logRequest);
+app.use(config_js_1.logError);
+// Routes 
+app.get("/materials", materialHandlers_js_1.handleGetMaterials);
 app.listen(port, () => {
     console.log(`Server is running at https://localhost:3001`);
 });

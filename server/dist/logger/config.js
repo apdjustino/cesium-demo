@@ -1,14 +1,19 @@
-import { createLogger, format, transports } from "winston";
-export const logger = createLogger({
-    transports: [new transports.Console()],
-    format: format.combine(format.colorize(), format.timestamp(), format.printf(({ timestamp, level, message }) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.logError = exports.logRequest = exports.logger = void 0;
+const winston_1 = require("winston");
+exports.logger = (0, winston_1.createLogger)({
+    transports: [new winston_1.transports.Console()],
+    format: winston_1.format.combine(winston_1.format.colorize(), winston_1.format.timestamp(), winston_1.format.printf(({ timestamp, level, message }) => {
         return `[${timestamp}] ${level}: ${message}`;
     }))
 });
-export const logRequest = (request, response, next) => {
-    logger.info(`Received request to url: ${request.url}`);
+const logRequest = (request, response, next) => {
+    exports.logger.info(`Received request to url: ${request.url}`);
     next();
 };
-export const logError = (error, request, response, next) => {
-    logger.error(`Express server occurred at url: ${request.url} with error ${error}`);
+exports.logRequest = logRequest;
+const logError = (error, request, response, next) => {
+    exports.logger.error(`Express server occurred at url: ${request.url} with error ${error}`);
 };
+exports.logError = logError;
