@@ -43,9 +43,9 @@ export class InMemoryTestAdapter {
    * @param id 
    * @returns {Material} 
    */
-  get(id: string): Material | {} {
+  get(id: string): Material | undefined {
     const material = this.materials.find((material) => material.id === id);
-    return material || {};
+    return material;
   }
 
   /**
@@ -55,9 +55,17 @@ export class InMemoryTestAdapter {
    * @returns {boolean}
    */
   update(id: string, newMaterial: Material): boolean {    
-    const index = this.materials.findIndex((material) => material.id === id);    
-    if (index >= 0) {      
-      this.materials.splice(index, 1, newMaterial);      
+    const index = this.materials.findIndex((material) => material.id === id);        
+    if (index >= 0) {
+      const itemToReplace: Material = {...this.materials[index]};
+      if (newMaterial.color) itemToReplace.color = newMaterial.color;
+      if (newMaterial.name) itemToReplace.name = newMaterial.name;
+      // have to explcitly compare this to undefined because 0 is falsey
+      if (newMaterial.cost !== undefined) itemToReplace.cost = newMaterial.cost;
+      if (newMaterial.volume !== undefined) itemToReplace.volume = newMaterial.volume;
+      if (newMaterial.deliverDate) itemToReplace.deliverDate = newMaterial.deliverDate;
+
+      this.materials.splice(index, 1, itemToReplace);      
     }
 
     return index >= 0;
@@ -83,7 +91,15 @@ export class InMemoryTestAdapter {
    * @returns {boolean}
    */
   add(newMaterial: Material): boolean {
-    this.materials.push(newMaterial);
-    return true;
+    // first check if id exists in "table"
+    const material = this.materials.find((m) => m.id === newMaterial.id);
+    if (!material) {
+      this.materials.push(newMaterial);
+      return true;
+    }
+
+    return false;
+    
+    
   }
 }

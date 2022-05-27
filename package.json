@@ -25,6 +25,7 @@
     "build": "react-scripts build",
     "build:server": "tsc --project ./server",
     "test": "react-scripts test",
+    "test:server": "jest ./server/dist/**",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

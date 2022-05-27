@@ -15,37 +15,33 @@ export class Material {
     this.color = color
     this.name = name;
     this.deliverDate = deliverDate;
-    this.cost = cost;
-    this.volume = volume;
-    // cost and volume must be parsed into integers
-    // try {
-    //   if (cost) {
-    //     const costInt = Math.floor(cost * 100);
-    //     this.cost = costInt;
-    //   } else {
-    //     this.cost = cost;
-    //   }
-      
-    // }
-    // catch (error) {
-    //   logger.error(`There has been an error parsing "cost" ${error}`)
-    //   throw new Error("Error parsing inputs")
-    // }
+    
+    // check if type is number, if not try casting to float
+    if (typeof cost !== "number") {
+      try {
+        this.cost = parseFloat(cost as any) || undefined;
+      }
+      catch (error) {
+        logger.error(`Error parsing cost ${error}`);
+        throw new Error("Error parsing cost")
+      }
+    } else {
+      this.cost = cost;
+    }
+    
+    if (typeof volume !== "number") {      
+      try {        
+        this.volume = parseFloat(volume as any) || undefined;       
+      }
+      catch (error) {
+        logger.error(`Error parsing volume ${error}`);
+        throw new Error("Error parsing volume")
+      }
+    } else {      
+      this.volume = volume;
+    }
 
-    // try {
-    //   if (volume) {
-    //     const volumeInt = Math.floor(volume);
-    //     this.volume = volumeInt;
-    //   } else {
-    //     this.volume = volume;
-    //   }
-      
-    // }
-    // catch (error) {
-    //   logger.error(`There has been an error parsing "volume" ${error}`)
-    //   throw new Error("Error parsing inputs")
-    // }
-            
+    
   }
 
   /**
@@ -67,8 +63,12 @@ export class Material {
   }
 
   get_object(id: string): MaterialType {
+    if (!id) {
+      throw new Error("Id is required for building material data object");
+    }
+
     const material: MaterialType = {
-      id,
+      id: `${id}`,
       cost: this.cost,
       color: this.color,
       deliverDate: this.deliverDate,
