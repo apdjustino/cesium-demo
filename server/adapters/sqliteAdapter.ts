@@ -26,4 +26,8 @@ export class SqliteAdapter {
     return true;
   }
 
+  add(newMaterial: MaterialType): boolean {
+    return true;
+  }
+
 }

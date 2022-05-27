@@ -76,4 +76,14 @@ export class InMemoryTestAdapter {
 
     return !!index;
   }
+
+  /**
+   * Simulates adding a new material
+   * @param {Material} newMaterial 
+   * @returns {boolean}
+   */
+  add(newMaterial: Material): boolean {
+    this.materials.push(newMaterial);
+    return true;
+  }
 }
