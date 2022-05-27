@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url';
 import express from "express";
 import path from "path";
 import { handleGetMaterials } from './handlers/materialHandlers.js';
+import { logRequest, logError } from './logger/config.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
@@ -9,6 +10,9 @@ const app = express();
 const port = 3001;
 // use JSON middleware to allow for JSON requests and responses
 app.use(express.json());
+// use winston logger middleware
+app.use(logRequest);
+app.use(logError);
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../index.html"));
 });
