@@ -8,6 +8,9 @@ import { MaterialResponse, Material, RequestById } from "../types/material";
 
 const BaseQuery = fetchBaseQuery({baseUrl: "http://localhost:3001/"});
 
+/**
+ * A Redux Toolkit Query API object that manages async requests and uses the Redux Store as a caching service for API responses
+ */
 export const materialApi = createApi({
   baseQuery: BaseQuery,
   endpoints: (builder) => ({

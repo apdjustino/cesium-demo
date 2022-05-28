@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Material } from "../types/material";
 
+/**
+ * This file contains the Redux Reducer and "Slice" used to store Material state across the different subcomponents
+ */
 export type MaterialState = {
   materials: Material[];
   selectedMaterial: Material | null;

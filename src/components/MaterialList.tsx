@@ -6,6 +6,10 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Material } from "../types/material";
 import MaterialListItem from "./MaterialListItem";
 
+/**
+ * A component that renders the current list of Materials
+ * @returns <MaterialList />
+ */
 const MaterialList = () => {
   const { data, error, isLoading } = useGetMaterialsQuery({}); 
   const materials = useAppSelector((state) => state.materials.materials);

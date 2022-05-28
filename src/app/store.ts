@@ -2,7 +2,9 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { materialApi } from "../api/api";
 import materialReducer from "../api/materialSlice";
 
-
+/**
+ * Redux store and middleware
+ */
 export const store = configureStore({
   reducer: {
     materials: materialReducer,

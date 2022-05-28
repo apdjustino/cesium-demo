@@ -6,6 +6,10 @@ import { useUpdateMaterialMutation, useLazyGetMaterialsQuery } from "../api/api"
 import { Material } from "../types/material";
 import { setMaterials, setSelectedMaterial } from "../api/materialSlice";
 
+/**
+ * A component that manages the inputs in an optimistic UI way for managing Materials.
+ * @returns <MaterialForm />
+ */
 const MaterialForm = () => {
   const selectedMaterial = useAppSelector((state) => state.materials.selectedMaterial);
   const [updateMaterial] = useUpdateMaterialMutation();
@@ -30,6 +34,8 @@ const MaterialForm = () => {
     },
     enableReinitialize: true
   });
+
+  console.log(selectedMaterial);
 
   React.useEffect(() => {
     if (!!data && !!data.data) {

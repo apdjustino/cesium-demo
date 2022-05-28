@@ -5,6 +5,11 @@ type OwnTypes = {
   material: Material;
 }
 
+/**
+ * 
+ * @param {Material} material - A Material type with fields relevant to the material.  
+ * @returns 
+ */
 const MaterialListItem = ({ material }: OwnTypes) => {
   
   

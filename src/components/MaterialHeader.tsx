@@ -1,5 +1,6 @@
 import React, { MouseEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { format } from "date-fns";
 import { Alert, Button } from "react-bootstrap";
 import { useAddMaterialMutation, useDeleteMaterialMutation, useLazyGetMaterialsQuery } from "../api/api";
 import { Material } from "../types/material";
@@ -28,7 +29,8 @@ const MaterialHeader = () => {
       name: "New Material",
       volume: 0,
       cost: 0,
-      color: "#000000"
+      color: "#000000",
+      deliverDate: format(new Date(), "yyyy-MM-dd")
     }
 
     addNewMaterial(defaultNewMaterial).then(() => {
