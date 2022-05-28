@@ -1,8 +1,8 @@
 import express,  { Express } from "express";
-
 import { handleGetMaterials, handleAddMaterial, handleDeleteMaterial, handleGetMaterial, handleUpdateMaterial } from './handlers/materialHandlers.js';
 import { logRequest, logError } from './logger/config.js';
 
+const cors = require("cors");
 const app: Express = express();
 // hard code port - in a larger app or production environemnt would use environment variables
 const port = 3001;
@@ -13,6 +13,11 @@ app.use(express.json());
 // use winston logger middleware
 app.use(logRequest);
 app.use(logError);
+
+// cors middleware
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 
 // Routes 
 

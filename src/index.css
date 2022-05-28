@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.color-picker {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-color: transparent !important;
+  width: 40px !important;
+  height: 30px !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.color-picker::-webkit-color-swatch {
+  border-radius: 50% !important;
+  border: none !important;
+}
+
+.color-picker::-moz-color-swatch {
+  border-radius: 50% !important;
+  border: none !important;
+}
+

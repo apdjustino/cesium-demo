@@ -1,57 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { Container } from "react-bootstrap"
+import MaterialList from './components/MaterialList';
+import MaterialForm from "./components/MaterialForm";
+import MaterialHeader from './components/MaterialHeader';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Container className="p-5" style={{width: "75%"}}>
+      <div className="row">
+        <MaterialHeader />
+      </div>
+      <div className="row" style={{minHeight: "300px"}}>
+        <div className="col-3">
+          <MaterialList />
+          <div className="pt-3 d-flex justify-content-between">
+            <div>Total Cost:</div>
+            <div>$0.00</div>
+          </div>
+        </div>
+        <div className="col-9">
+          <MaterialForm />
+        </div>
+      </div>
+    </Container>
   );
 }
 
