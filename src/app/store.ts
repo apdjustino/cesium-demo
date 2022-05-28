@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { materialApi } from "../api/api";
+import materialReducer from "../api/materialSlice";
 
 
 export const store = configureStore({
   reducer: {
+    materials: materialReducer,
     [materialApi.reducerPath]: materialApi.reducer,
   },
   middleware: (gDM) => gDM().concat(materialApi.middleware)

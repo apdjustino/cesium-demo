@@ -26,6 +26,7 @@ export const materialApi = createApi({
     updateMaterial: builder.mutation<MaterialResponse<boolean>, Material>({
       query: ({ id, color, cost, deliverDate, name, volume }) => ({
         url: `material/${id}`,
+        method: "PUT",
         body: {
           color,
           cost,
@@ -43,9 +44,10 @@ export const materialApi = createApi({
     }),
     addMaterial: builder.mutation<MaterialResponse<boolean>, Material>({
       query: ({ id, color, cost, deliverDate, name, volume}) => ({
-        url: `material/${id}`,
+        url: `material`,
         method: "POST",
         body: {
+          id,
           color,
           cost,
           deliverDate,
@@ -57,4 +59,10 @@ export const materialApi = createApi({
   })
 });
 
-export const { useGetMaterialsQuery, useUpdateMaterialMutation, useDeleteMaterialMutation, useAddMaterialMutation } = materialApi;
+export const { 
+  useGetMaterialsQuery,
+  useLazyGetMaterialsQuery,
+  useUpdateMaterialMutation,
+  useDeleteMaterialMutation,
+  useAddMaterialMutation
+} = materialApi;

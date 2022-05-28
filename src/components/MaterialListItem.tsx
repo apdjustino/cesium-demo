@@ -1,11 +1,15 @@
-import react from "react";
+import React from "react";
 import { Material } from "../types/material";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { setSelectedMaterial } from "../api/materialSlice";
 
 type OwnTypes = {
   material: Material;
 }
 
 const MaterialListItem = ({ material }: OwnTypes) => {
+  
+  
   return (
     <div className="row">
       <div className="col-2">
