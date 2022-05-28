@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useUpdateMaterialMutation, useLazyGetMaterialsQuery } from "../api/api";
 import { Material } from "../types/material";
-import { setMaterials } from "../api/materialSlice";
+import { setMaterials, setSelectedMaterial } from "../api/materialSlice";
 
 const MaterialForm = () => {
   const selectedMaterial = useAppSelector((state) => state.materials.selectedMaterial);
@@ -34,12 +34,24 @@ const MaterialForm = () => {
   React.useEffect(() => {
     if (!!data && !!data.data) {
       dispatch(setMaterials(data.data));
+      
+      if (selectedMaterial) {
+        const selectedId = selectedMaterial.id;
+        const newSelectedMaterial = data.data.find(({id}) => selectedId === id);
+        if (newSelectedMaterial) {
+          dispatch(setSelectedMaterial(newSelectedMaterial));
+        }
+        
+      }
+      
+
     }
-  }, [data, dispatch])
+  }, [data, dispatch, selectedMaterial])
 
   return (
     <div className="border border-dark p-4 h-100">
-      <Form>
+      {!!selectedMaterial ? (
+        <Form>
         <div className="row">
           <div className="col-6">
             <Form.Group>
@@ -110,7 +122,12 @@ const MaterialForm = () => {
             </Form.Group>
           </div>
         </div>
-      </Form>      
+      </Form>    
+      ) : (
+        <div className="d-flex justify-content-center align-items-center">
+          No Material Selected
+        </div>
+      )}        
     </div>
   )
 }

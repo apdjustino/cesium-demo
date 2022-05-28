@@ -21,13 +21,11 @@ const MaterialList = () => {
     if (data && data.data) {
       dispatch(setMaterials(data.data));
     }
-  }, [data, dispatch])
-
-  console.log(data);
+  }, [data, dispatch])  
 
   return !error ? (
     <div className="border border-dark overflow-scroll h-100">
-      {!isLoading ? (
+      {!isLoading ? materials.length > 0 ? (
         <ListGroup>
           {materials.map((material, idx) => (
             <ListGroup.Item key={idx} action onClick={() => {itemClickHandler(material)}} active={material.id === selectedMaterial?.id}>
@@ -35,6 +33,10 @@ const MaterialList = () => {
             </ListGroup.Item>
           ))}
         </ListGroup>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center">
+          No Materials
+        </div>
       ) : (
         <Spinner animation="border" />
       )}      

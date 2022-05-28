@@ -13,7 +13,7 @@ export class InMemoryTestAdapter {
         id: "63a4c1a5-716c-48af-b2c7-f674d9eda436",
         color: "#fcba03",
         cost: 5000,
-        deliverDate: "14-03-2022",
+        deliverDate: "2022-14-03",
         name: "Sand",
         volume: 4,
         totalCost: "$20000.00"
@@ -22,7 +22,7 @@ export class InMemoryTestAdapter {
         id: "c66f267a-9401-4e9b-a327-e27e4de30e0c",
         color: "#37a828",
         cost: 1000,
-        deliverDate: "14-03-2022",
+        deliverDate: "2022-14-03",
         name: "Gravel",
         volume: 4,
         totalCost: "$4000.00"
@@ -64,6 +64,7 @@ export class InMemoryTestAdapter {
       if (newMaterial.cost !== undefined) itemToReplace.cost = newMaterial.cost;
       if (newMaterial.volume !== undefined) itemToReplace.volume = newMaterial.volume;
       if (newMaterial.deliverDate) itemToReplace.deliverDate = newMaterial.deliverDate;
+      if (newMaterial.totalCost) itemToReplace.totalCost = newMaterial.totalCost;
 
       this.materials.splice(index, 1, itemToReplace);      
     }

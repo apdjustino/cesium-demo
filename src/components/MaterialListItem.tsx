@@ -1,7 +1,5 @@
 import React from "react";
 import { Material } from "../types/material";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setSelectedMaterial } from "../api/materialSlice";
 
 type OwnTypes = {
   material: Material;
@@ -13,7 +11,7 @@ const MaterialListItem = ({ material }: OwnTypes) => {
   return (
     <div className="row">
       <div className="col-2">
-        <div style={{borderRadius: "50%", height: "30px", width: "30px", backgroundColor: material.color || "blue"}} />
+        <div style={{borderRadius: "50%", height: "30px", width: "30px", backgroundColor: material.color || "#000000"}} />
       </div>
       <div className="col-10 d-flex flex-column">
         <div className="p-0">

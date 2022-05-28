@@ -27,7 +27,8 @@ const MaterialHeader = () => {
       id: uuidv4(),
       name: "New Material",
       volume: 0,
-      cost: 0
+      cost: 0,
+      color: "#000000"
     }
 
     addNewMaterial(defaultNewMaterial).then(() => {
@@ -43,6 +44,7 @@ const MaterialHeader = () => {
     if (selectedMaterial) {
       deleteMaterial({id: selectedMaterial.id}).then(() => {
         getMaterials({});
+        dispatch(setSelectedMaterial(null));
       })
     }
     else {
